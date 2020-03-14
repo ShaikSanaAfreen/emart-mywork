@@ -1,0 +1,124 @@
+<div class="sidebar" >
+    <ul class="navbar-nav ml-auto">
+
+<li class="nav-item ">
+    <a class="nav-link  text-black" routerLink="/selleradditem">Add Item</a>
+</li>
+<li class="nav-item" >
+    <a class="nav-link text-black" routerLink="/login">Logout</a>
+</li>
+    
+</ul>
+</div>
+<div class="container">
+    <h1>Add Item</h1>
+    <div class="row mt-5">
+        
+
+         <div class="col-md-6 set-md-6">
+              <div class="card card-align">
+
+                   <div class="card-body ">
+
+                        <form action=" ">
+
+                             <label for="id"> ID:</label>
+
+                             <div>
+                                  <input 
+                                       type="text" 
+                                       class="form-control" 
+                                       id="itemid" 
+                                       name="itemid"
+                                       [(ngModel)]="selleritem.itemid"
+                                        placeholder="Enter Item ID" /> </div>
+
+                      <label for="item name"> Item Name:</label>
+
+                             <div>
+                                  <input  
+                                       type="text" 
+                                       class="form-control" 
+                                       id="itemname"
+                                        name="itemname" 
+                                       [(ngModel)]="selleritem.itemname" 
+                                       placeholder="Enter Item Name" /> </div>
+
+                             <label for="item image"> Item Image:</label>
+
+                             <div>
+                                  <input 
+                                       type="text" 
+                                       class="form-control"
+                                        id="itemimage" 
+                                        name="itemimage"
+                                       [(ngModel)]="selleritem.itemimage" 
+                                       placeholder="Enter Item Image" /> </div>
+
+                             <label for="item price">Item Price:</label>
+
+                             <div>
+                                  <input 
+                                       type="text"  
+                                       class="form-control" 
+                                       id="itemprice" 
+                                       name="itemprice"
+                                       [(ngModel)]="selleritem.itemprice" 
+                                       placeholder="Enter Item Price" /> </div>
+                                       <label for="item image"> Item Stock:</label>
+
+                                       <div>
+                                        <input 
+                                             type="text"  
+                                             class="form-control" 
+                                             id="itemstock" 
+                                             name="itemstock"
+                                             [(ngModel)]="selleritem.itemstock" 
+                                             placeholder="Enter Item Stock" /> </div>
+                                             <label for="item image"> Item  Description:</label>
+
+                                             <div>
+                                                <input 
+                                                     type="text"  
+                                                     class="form-control" 
+                                                     id="itemdescription" 
+                                                     name="itemdescription"
+                                                     [(ngModel)]="selleritem.itemdescription" 
+                                                     placeholder="Enter Item Description" /> </div>
+                                                     <label for="item image"> Subcategory ID:</label>
+                                                     <div>
+                                                        <input 
+                                                             type="id" 
+                                                             class="form-control" 
+                                                             id="subcategoryid" 
+                                                             name="subcategoryid"
+                                                             [(ngModel)]="selleritem.subcategoryid"
+                                                              placeholder="Enter Subcategory ID" /> </div>
+                                                              <label for="item image"> Item  Remarks:</label>
+                                                              <div>
+                                                                <input 
+                                                                     type="text"  
+                                                                     class="form-control" 
+                                                                     id="itemremarks" 
+                                                                     name="itemremarks"
+                                                                     [(ngModel)]="selleritem.itemremarks" 
+                                                                     placeholder="Enter Item Remarks" /> </div>
+                                                                     <label for="item image"> Seller ID:</label>
+                                                                     <div>
+                                                                        <input 
+                                                                             type="id" 
+                                                                             class="form-control" 
+                                                                             id="sellerid" 
+                                                                             name="sellerid"
+                                                                             [(ngModel)]="selleritem.sellerid"
+                                                                              placeholder="Enter Seller ID" /> </div>
+                                                                  <a class="btn btn-info text-white" >Add</a>
+
+
+                        </form>
+                       
+                   </div>
+              </div>
+         </div>
+    </div>
+</div>

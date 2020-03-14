@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col-md-6">
+            <div class="card card-align card-width">
+                <div class="card-header">Seller's SignUp</div>
+                <div class="card-body">
+                    <form action="">
+                        
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="username">User Name</label>
+                                        <input type="text" class="form-control" id="username"
+                                            placeholder="Enter username" [(ngModel)]="seller.username"
+                                            name="username" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="pass"
+                                            placeholder="Enter password" [(ngModel)]="seller.password" name="pass" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="companyname">Company Name</label>
+                                        <input type="text" class="form-control" id="companyname"
+                                            [(ngModel)]="seller.company" placeholder="Enter companyname"
+                                            name="companyname" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="brief">Brief</label>
+                                        <textarea class="form-control" id="brief" rows="3" [(ngModel)]="seller.brief"
+                                            name="brief"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="gst">GST</label>
+                                        <input type="text" class="form-control" id="gst" placeholder="GST"
+                                            [(ngModel)]="seller.gst" name="gst" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="postal address">Address</label>
+                                        <textarea class="form-control" id="address" rows="3"
+                                            [(ngModel)]="seller.address" name="address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Email ID</label>
+                                        <input type="email" class="form-control" placeholder="Enter email" id="email"
+                                            [(ngModel)]="seller.email" name="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="contact">Contact</label>
+                                        <input type="text" class="form-control" placeholder="contact" id="contact"
+                                            [(ngModel)]="seller.contact" name="contact">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="website">Website</label>
+                                        <input type="text" class="form-control" placeholder="website" id="website"
+                                            [(ngModel)]="seller.website" name="website">
+                                    </div>
+                                </div>
+                            </div>
+
+                         <button type="submit" class="btn btn-success" (click)="sellerregister()">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

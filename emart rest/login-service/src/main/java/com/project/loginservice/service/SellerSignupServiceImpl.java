@@ -1,0 +1,122 @@
+package com.project.loginservice.service;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.project.loginservice.dao.SellerSignupDao;
+import com.project.loginservice.entity.BillDetailsEntity;
+import com.project.loginservice.entity.BillEntity;
+import com.project.loginservice.entity.BuyerSignupEntity;
+import com.project.loginservice.entity.CategoryEntity;
+import com.project.loginservice.entity.ItemEntity;
+import com.project.loginservice.entity.SellerSignupEntity;
+import com.project.loginservice.entity.SubCategoryEntity;
+import com.project.loginservice.pojo.BillPojo;
+import com.project.loginservice.pojo.BillerDetailsPojo;
+import com.project.loginservice.pojo.BuyerSignupPojo;
+import com.project.loginservice.pojo.CategoryPojo;
+import com.project.loginservice.pojo.ItemPojo;
+import com.project.loginservice.pojo.SellerSignupPojo;
+import com.project.loginservice.pojo.SubCategoryPojo;
+
+@Service
+public class SellerSignupServiceImpl implements SellerSignupService {
+	static Logger LOG = Logger.getLogger(SellerSignupServiceImpl.class.getClass());
+
+	@Autowired
+	SellerSignupDao sellerSignupDao;
+
+	@Override
+	public SellerSignupPojo getSellerItem(int SellerId) {
+
+		LOG.info(" Entered getSellerItem() ");
+		SellerSignupPojo sellerSignupPojo = null;
+		SellerSignupEntity sellerSignupEntity = sellerSignupDao.findById(SellerId).get();
+		if (sellerSignupEntity != null) {
+
+			Set<ItemEntity> allItemsEntity = sellerSignupEntity.getAllItems();
+			Set<ItemPojo> allItems = new HashSet<ItemPojo>();
+			for (ItemEntity itemEntity : allItemsEntity) {
+
+				SubCategoryEntity subCategoryEntity = itemEntity.getSubCategoryId();
+				CategoryEntity categoryEntity = subCategoryEntity.getCategoryId();
+				CategoryPojo categoryPojo = new CategoryPojo(categoryEntity.getId(), categoryEntity.getName(),
+						categoryEntity.getBrief());
+				SubCategoryPojo subCategoryPojo = new SubCategoryPojo(subCategoryEntity.getId(),
+						subCategoryEntity.getName(), categoryPojo, subCategoryEntity.getBrief(),
+						subCategoryEntity.getGstPercent());
+				ItemPojo itemPojo = new ItemPojo(itemEntity.getId(), itemEntity.getName(), subCategoryPojo,
+						itemEntity.getPrice(), itemEntity.getDescription(), itemEntity.getStock(),
+						itemEntity.getRemarks(), itemEntity.getImage(), null);
+
+				allItems.add(itemPojo);
+
+			}
+			sellerSignupPojo = new SellerSignupPojo(sellerSignupEntity.getId(), sellerSignupEntity.getUsername(),
+					sellerSignupEntity.getPassword(), sellerSignupEntity.getCompany(), sellerSignupEntity.getGst(),
+					sellerSignupEntity.getBrief(), sellerSignupEntity.getAddress(), sellerSignupEntity.getEmail(),
+					sellerSignupEntity.getWebsite(), sellerSignupEntity.getContact(), allItems);
+
+		}
+		BasicConfigurator.configure();
+		LOG.info(" Exited getSellerItem() ");
+		return sellerSignupPojo;
+
+	}
+
+	@Override
+	public SellerSignupPojo validateSeller(SellerSignupPojo sellerSignupPojo) {
+		SellerSignupEntity sellerSignupEntity = sellerSignupDao
+				.findByUsernameAndPassword(sellerSignupPojo.getUsername(), sellerSignupPojo.getPassword());
+
+		if (sellerSignupEntity != null) {
+
+			Set<ItemEntity> allItemsEntity = sellerSignupEntity.getAllItems();
+			Set<ItemPojo> allItems = new HashSet<ItemPojo>();
+			for (ItemEntity itemEntity : allItemsEntity) {
+
+				SubCategoryEntity subCategoryEntity = itemEntity.getSubCategoryId();
+				CategoryEntity categoryEntity = subCategoryEntity.getCategoryId();
+				CategoryPojo categoryPojo = new CategoryPojo(categoryEntity.getId(), categoryEntity.getName(),
+						categoryEntity.getBrief());
+				SubCategoryPojo subCategoryPojo = new SubCategoryPojo(subCategoryEntity.getId(),
+						subCategoryEntity.getName(), categoryPojo, subCategoryEntity.getBrief(),
+						subCategoryEntity.getGstPercent());
+				ItemPojo itemPojo = new ItemPojo(itemEntity.getId(), itemEntity.getName(), subCategoryPojo,
+						itemEntity.getPrice(), itemEntity.getDescription(), itemEntity.getStock(),
+						itemEntity.getRemarks(), itemEntity.getImage(), null);
+
+				allItems.add(itemPojo);
+
+			}
+			sellerSignupPojo = new SellerSignupPojo(sellerSignupEntity.getId(), sellerSignupEntity.getUsername(),
+					sellerSignupEntity.getPassword(), sellerSignupEntity.getCompany(), sellerSignupEntity.getGst(),
+					sellerSignupEntity.getBrief(), sellerSignupEntity.getAddress(), sellerSignupEntity.getEmail(),
+					sellerSignupEntity.getWebsite(), sellerSignupEntity.getContact(), allItems);
+
+		}
+
+		return sellerSignupPojo;
+
+	}
+
+	@Override
+	public SellerSignupPojo addSeller(SellerSignupPojo sellerSignupPojo) {
+		LOG.info(" Entered addSeller() ");
+		SellerSignupEntity sellerSignupEntity = new SellerSignupEntity(sellerSignupPojo.getId(),
+				sellerSignupPojo.getUsername(), sellerSignupPojo.getPassword(), sellerSignupPojo.getCompany(),
+				sellerSignupPojo.getGst(), sellerSignupPojo.getBrief(), sellerSignupPojo.getAddress(),
+				sellerSignupPojo.getEmail(), sellerSignupPojo.getWebsite(), sellerSignupPojo.getContact(), null);
+		sellerSignupDao.save(sellerSignupEntity);
+		BasicConfigurator.configure();
+		LOG.info(" Exited addSeller() ");
+		return sellerSignupPojo;
+	}
+
+}
