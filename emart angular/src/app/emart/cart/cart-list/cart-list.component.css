@@ -21,7 +21,7 @@
   }
   
   .sidebar a:hover:not(.active) {
-    background-color: rgb(40, 165, 187);
+    background-color: rgb(92, 92, 89);
     color: white;
   }
   
